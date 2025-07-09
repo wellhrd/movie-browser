@@ -1,52 +1,46 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, Button } from 'react-native';
+//import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-// Create a stack navigator
-const Stack = createStackNavigator();
+// Import the screens
+import HomeScreen from './Screens/Home';
+import DetailsScreen from './Screens/Search';
+import FavoritesScreen from './Screens/Favorites';
 
-// Define Home screen
-function HomeScreen({ navigation }) {
+// Create a bottom tab navigator
+const Tab = createBottomTabNavigator();
+//const Stack = createStackNavigator();
+
+
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <Button title='Go to details' onPress={() => navigation.navigate('Details')} />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName='Home'
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused ? 'home' : 'home-outline';
+            } else if (route.name === 'Search') {
+              iconName = focused ? 'search' : 'search-outline';
+            } else if (route.name === 'Favorites') {
+              iconName = focused ? 'heart' : 'heart-outline';
+            }
+
+            // Return the icon
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name ="Favorites" component={FavoritesScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Search" component={DetailsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-// Define Details screen
-function DetailsScreen() {
-  return (
-    <View style={styles.container}>
-      <Button title='Go back' onPress={() => navigation.navigate('Home')} />
-    </View>
-  );
-}
-
-export default class App extends React.Component {
-  render() {
-    return (
-      // <View style={styles.container}>
-      //   <Text>Open up App.js to start working on your app!</Text>
-      // </View>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen}  />
-          <Stack.Screen name="Details" component={DetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-

@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "project2",
-    "description": "This project is really great.",
-    "slug": "project2",
+    "name": "Movie Browser",
+    "description": "A movie browsing application.",
+    "slug": "movie-browser",
     "privacy": "public",
     "sdkVersion": "53.0.0",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/myIcon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/mysplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
