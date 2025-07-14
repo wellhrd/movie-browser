@@ -1,11 +1,9 @@
-import React, { useState} from 'react';
-import { StyleSheet, View, Button, TextInput, Text, Image, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Button, TextInput, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { movies } from '../Data/mockMovies';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { Ionicons } from '@expo/vector-icons';
 
 
-function DetailsScreen( { navigation, route}) {
+function SearchScreen({ navigation, route }) {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [submittedQuery, setSubmittedQuery] = useState('');
@@ -23,7 +21,7 @@ function DetailsScreen( { navigation, route}) {
         onChangeText={setSearchQuery}
       />
 
-      <Button title="Search" onPress={ () => setSubmittedQuery(searchQuery)} />
+      <Button title="Search" onPress={() => setSubmittedQuery(searchQuery)} />
 
       <FlatList
         data={filteredMovies}
@@ -39,19 +37,15 @@ function DetailsScreen( { navigation, route}) {
           </View>
         )}
       />
-
-
-
-
       <Button title='Go back' onPress={() => navigation.navigate('Home')} />
     </View>
   );
 }
 
-export default DetailsScreen;
+export default SearchScreen;
 
 const styles = StyleSheet.create({
-  container: {          
+  container: {
     flex: 1,
     paddingTop: 50,
     backgroundColor: '#fff',
