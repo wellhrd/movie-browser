@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //import Icon from 'react-native-vector-icons/Ionicons';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,9 +10,21 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from './Screens/Home';
 import SearchScreen from './Screens/Search';
 import FavoritesScreen from './Screens/Favorites';
+import DetailsScreen from './Screens/Details';
 
-// Create a bottom tab navigator
+
+// Create a stack navigator
 const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="HomeMain" component={HomeScreen} options={{ headerShown: false }} />
+      <HomeStack.Screen name="MovieDetails" component={DetailsScreen} options={{ title: 'More Movie Details' }} />
+    </HomeStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -37,7 +50,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Favorites" component={FavoritesScreen} />
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeStackScreen} options={ {headerShown: false} } />
         <Tab.Screen name="Search" component={SearchScreen} />
       </Tab.Navigator>
     </NavigationContainer>

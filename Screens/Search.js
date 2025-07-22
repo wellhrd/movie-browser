@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Button, TextInput, Text, Image, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Button, TextInput, Text, Image, FlatList } from 'react-native';
 import { movies } from '../Data/mockMovies';
 
 

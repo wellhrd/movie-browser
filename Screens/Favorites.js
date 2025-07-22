@@ -1,12 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function FavoritesScreen({ route }) {
 
-  // Access the favorites passed from HomeScreen
   const { favorites } = route.params || { favorites: [] };
-  
+  //const [favorites, setFavorites] = useState( route.params?.favorites || [] ); //Some errors with this atm
+
+
+  useEffect(() => {
+    const loadFavorites = async () => {
+      try {
+        const storedFavorites = await AsyncStorage.getItem('favorites');
+        if (storedFavorites) {
+          setFavorites(JSON.parse(storedFavorites));
+        } else if (route.params?.favorites) {
+          // Save initial favorites from route params if no stored data
+          await AsyncStorage.setItem('favorites', JSON.stringify(route.params.favorites));
+          setFavorites(route.params.favorites);
+        }
+      } catch (error) {
+        console.error('Failed to load favorites:', error);
+      }
+    };
+    loadFavorites();
+  }, [route.params?.favorites]);
+
+  // Save favorites to AsyncStorage whenever they change
+  useEffect(() => {
+    const saveFavorites = async () => {
+      try {
+        await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
+      } catch (error) {
+        console.error('Failed to save favorites to AsyncStorage:', error);
+      }
+    };
+
+    if (favorites.length > 0) {
+      saveFavorites();
+    }
+  }, [favorites]);
+
   // If no favorites are passed, default to an empty array
   const renderItem = ({ item }) => (
     <View style={styles.card}>
@@ -62,5 +97,6 @@ const styles = StyleSheet.create({
   title: {
     padding: 10,
     fontSize: 18,
+    color: '#FF6347',
   },
 });

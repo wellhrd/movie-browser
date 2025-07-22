@@ -24,7 +24,7 @@ function HomeScreen({ navigation }) {
     const isFavorite = favorites.some(fav => fav.id === item.id);
 
     return (
-
+ <TouchableOpacity onPress={() => navigation.navigate('MovieDetails', { movie: item })}>
       <View style={styles.card}>
         <Image source={{ uri: item.image }} style={styles.image} />
         <View style={styles.cardContent}>
@@ -32,7 +32,6 @@ function HomeScreen({ navigation }) {
           <Text style={styles.movieDetails}>Rated: {item.rated}</Text>
           <Text style={styles.movieDetails}>Year: {item.year}</Text>
           <Text style={styles.movieDetails}>Genre: {item.genre}</Text>
-
 
 
           <TouchableOpacity onPress={() => toggleFavorite(item)} style={styles.heartButton}>
@@ -47,6 +46,7 @@ function HomeScreen({ navigation }) {
     </TouchableOpacity>
     ); */}
       </View>
+      </TouchableOpacity>
 
     );
   };
@@ -64,6 +64,7 @@ function HomeScreen({ navigation }) {
         <Text style={styles.favoritesText}>Go to Favorites ({favorites.length})</Text>
       </TouchableOpacity>
     </View>
+    
   );
 }
 
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     fontWeight: '500',
+    color: '#FF6347',
   },
   movieDetails: {
     padding: 10,
