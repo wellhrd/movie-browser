@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function FavoritesScreen({ route }) {
 
-  const { favorites } = route.params || { favorites: [] };
+  const { favorites, setFavorites } = route.params || { favorites: [] };
   //const [favorites, setFavorites] = useState( route.params?.favorites || [] ); //Some errors with this atm
 
 
