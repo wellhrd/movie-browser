@@ -8,14 +8,27 @@
     "platforms": ["ios", "android", "web"],
     "version": "1.2.0",
     "orientation": "portrait",
-    "icon": "./assets/myIcon.png",
+    "icon": "./assets/myIcon2.png",
     "splash": {
       "image": "./assets/mysplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/mysplash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/myIcon2.png",
+      "splash": {
+        "image": "./assets/mysplash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
     }
   }
 }
