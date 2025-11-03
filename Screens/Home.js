@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, FlatList, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { movies } from '../Data/mockMovies';
+//import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 function HomeScreen({ navigation }) {
@@ -51,7 +52,8 @@ function HomeScreen({ navigation }) {
     );
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+    {/* <View style={styles.container}> */}
       <Text style={styles.header} >Awesome movies to watch </Text>
 
       <FlatList data={movies} renderItem={renderItem} keyExtractor={item => item.id} contentContainerStyle={styles.list} />
@@ -63,8 +65,8 @@ function HomeScreen({ navigation }) {
       >
         <Text style={styles.favoritesText}>Go to Favorites ({favorites.length})</Text>
       </TouchableOpacity>
-    </View>
-    
+    {/* </View> */}
+    </SafeAreaView>
   );
 }
 
